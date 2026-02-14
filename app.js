@@ -3,7 +3,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const userModel = require('./models/user');
-
+const multerconfig = require('./config/multer');
+const upload = require('./config/multer');
 // Middleware setup
 app.set('view engine', 'ejs');
 app.use(express.json());
@@ -20,9 +21,10 @@ app.get('/read', async (req, res) => {
   res.render('read',{users});
 });
 
-app.post('/create', async (req, res) => {
-  let { name, email, image } = req.body;
-  let createdUser = await userModel.create({ name, email, image });
+app.post('/create',upload.single('image'), async (req, res) => {
+  let { name, email } = req.body;
+  let createdUser = await userModel.create({ name, email, image: req.file.filename });
+  await createdUser.save();
    res.redirect('/read');
 });
 app.get('/delete/:id', async (req, res) => {

@@ -14,10 +14,10 @@
         <a class="text-blue-500" href="/read">View All Users</a>
     </div>
         <h1 class="text-4xl font-bold mb-5">Create User</h1>
-        <form action="/create" method="POST">
+        <form action="/create" method="POST" enctype="multipart/form-data">
             <input type="text" class="px-5 py-3 bg-transparent outline-none " name="name" placeholder="name">
             <input type="email" class="px-5 py-3 bg-transparent outline-none" name="email" placeholder="email">
-            <input type="text" class="px-5 py-3 bg-transparent outline-none" name="image" placeholder="image-url">
+            <input type="file" class="px-5 py-3 bg-transparent outline-none" name="image" placeholder="image-url">
             <button class="px-5 py-3 bg-blue-600 rounded-md">Submit</button>
         </form>
     </div>
